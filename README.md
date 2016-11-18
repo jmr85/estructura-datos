@@ -1,3 +1,3 @@
 # Estructura de datos
-materia de la carrera analista de sistemas
+Materia de la carrera de Analista de Sistemas
 con C/C++
