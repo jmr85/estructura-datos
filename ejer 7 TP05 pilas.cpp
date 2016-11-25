@@ -1,28 +1,23 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include "lect_lib.h" 
+#include "pila_lib.h"
 
-struct pila{
-  int num;
-  struct pila *sig;
-};
-
-void crear_pila(struct pila *&pil);
-int pila_vacia(struct pila *pil);
-int pila_llena(struct pila *pil);
-void insertar_pila(struct pila *&pil, int n);//(PUSH)
-void sacar_pila(struct pila *&pil, int &n);//(POP)devuelve los dos paremetros
-void mostrar_pila(struct pila *pil);// ejer 7 TP05 Pilas
-
-int MAXPILA = 5;
+/* (OK) 7) Armar un programa  usando los procedimientos y funciones definidas que lea varios nros (con cualquier criterio) y intente insertarlos en una pila que comenzará vacía.
+ Se deben descartar los que hagan desbordar la pila. Luego mostrar su contenido. Usar un procedimiento. 
+ Luego intentar eliminar el tope de la pila, mostrar su contenido. Luego intentar eliminar la base de la pila, mostrar su contenido. 
+ Finalmente mostrar cuantos elementos quedaron en la pila. Esto último hacerlo con una función.  */
 
 int main(void){
     struct pila *a, *b;
     int n;
   
     crear_pila(a);
+    crear_pila(b);
+    
     pedir_nro(n);
   
+  /**** Carga de la Pila ****/
     while(n != 0){
         if(pila_llena(a) == 1){
             printf("\nPila llena\n");
@@ -32,64 +27,38 @@ int main(void){
         pedir_nro(n);
     }
     
-    mostrar_pila(a);
-  /** Tope **/    
+    printf("\nPila A:\n");
+	mostrar_pila(a);
+    
+
+  /**** Tope de la Pila ****/    
   if(pila_vacia(a) == 1){
       sacar_pila(a, n);
       printf("\nEl tope es: %d\n", n);
-     // insertar_pila(a, n); 
   }else{
       printf("Pila vacia\n");
   } 
-  mostrar_pila(a);
+  
+   while(pila_vacia(a) == 1){//si no esta vacia
+    sacar_pila(a, n);
+    insertar_pila(b, n);
+  }
+  
+  /**** Base de la Pila ****/ 
+  if(pila_vacia(b) == 1){
+      sacar_pila(b, n);
+      printf("\nLa base es: %d", n);
+      while(pila_vacia(b) == 1){
+          sacar_pila(b, n);
+          insertar_pila(a, n);
+      }
+  }
+  
+  
+  printf("\nCantidad elementos de la pila (Luego de sacar Tope y Base): %d\n", cont_pila(a));
+  printf("\nAsi queda la Pila A:\n");
+  mostrar_pila(a); 
+  
   system("pause");
   return(0);
-}
-void crear_pila(struct pila *&pil){
-  pil = NULL;
-}
-int pila_vacia(struct pila *pil){
-    if(pil == NULL)
-        return(0);// o res = 0
-    else
-        return(1);// o res = 1
-}
-int pila_llena(struct pila *pil){
-  struct pila *p = pil;
-  int cont = 0;
-  while(p != NULL){
-    cont++;
-    p = p->sig;
-  }
-  if(cont == MAXPILA)
-    return(1);
-  else
-    return(0);  
-}
-void insertar_pila(struct pila *&pil, int n){
-  struct pila *nuevo = new struct pila;
-  nuevo->num = n;
-  nuevo->sig = NULL;
-  nuevo->sig = pil;
-  pil = nuevo;
-}
-void sacar_pila(struct pila *&pil, int &n){
-  struct pila *p;
-  n = pil->num;
-  p = pil;
-  pil = pil->sig;
-  delete(p);
-}
-void mostrar_pila(struct pila *pil){
-    struct pila *p;int n;
-    crear_pila(p);
-    while(pila_vacia(pil)==1){
-        sacar_pila(pil,n);                      
-        printf("\n  %d\n", n);
-        insertar_pila(p,n);
-    }
-    while(pila_vacia(p)==1){
-        sacar_pila(p,n);                      
-        insertar_pila(pil,n);
-    }
 }

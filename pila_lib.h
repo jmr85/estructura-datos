@@ -14,8 +14,10 @@ void sacar_pila(struct pila *&pil, int &n);//(POP)devuelve los dos paremetros
 void mostrar_pila(struct pila *pil);// ejer 7 TP05 Pilas
 int cont_pila(struct pila *pil);
 int numero_pila(struct pila *&pil, int n);// ejer 9 TP05 
+void eliminar_ocurrencia(struct pila *&pil, int x);
 
-int MAXPILA = 5;
+
+int MAXPILA = 10;
 
 
 void crear_pila(struct pila *&pil){
@@ -83,16 +85,18 @@ int cont_pila(struct pila *pil){
     }
 	return(resul);
 }
-int numero_pila(struct pila *&pil, int n){
+/*Muestra cuantas  veces el numero ingresado esta en la pila */
+int numero_pila(struct pila *&pil, int x){
 	struct pila *p;
 	int resul=0;
+	int n;
 	
 	crear_pila(p);
 	
 	while(pila_vacia(pil)==1){
         sacar_pila(pil,n);  
-		if(n == pil->num){
-        	resul += 1;
+		if(x == n){
+        	resul++;
 	    }                    
         insertar_pila(p,n);
     }
@@ -101,4 +105,26 @@ int numero_pila(struct pila *&pil, int n){
         insertar_pila(pil,n);
     }
 	return(resul);
+}
+/* 10) Cargar una pila. Mostrar su contenido. Luego leer un número y eliminarlo todas las veces que aparece en la pila. Mostrar como quedó la pila. */
+void eliminar_ocurrencia(struct pila *&pil, int x){
+	struct pila *p, *aux;
+	int resul=0;
+	int n;
+	
+	crear_pila(p);
+	crear_pila(aux);
+	
+	while(pila_vacia(pil)==1){
+        sacar_pila(pil,n); 
+		if(x == n){
+        	insertar_pila(aux, n);
+	    }else{
+	    	insertar_pila(p,n);
+		}                       
+    }
+    while(pila_vacia(p)==1){
+        sacar_pila(p,n);                    
+        insertar_pila(pil,n);
+    }
 }

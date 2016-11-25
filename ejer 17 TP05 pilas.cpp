@@ -3,7 +3,7 @@
 #include "lect_lib.h" 
 #include "pila_lib.h"
 
-/* 17) Cargar una pila. Mostrar su contenido. Sin contar mostrar una leyenda aclaratoria dependiendo si la cantidad de elementos es par o impar. */
+/* (OK) 17) Cargar una pila. Mostrar su contenido. Sin contar mostrar una leyenda aclaratoria dependiendo si la cantidad de elementos es par o impar. */
 
 int main(void){
     struct pila *a, *b, *c;
@@ -43,6 +43,7 @@ int main(void){
           insertar_pila(a,n);
                       
     }
+    
     if(pila_vacia(b) == 0 && pila_vacia(c) == 0){
            printf("\n PAR \n");          
     }else{

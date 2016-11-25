@@ -33,7 +33,7 @@ int main(void){
     
   /********** Muestra el tope **************/  
   /*Elimina el tope y muestra el tope (Asi lo saca, lo muestra y lo vuelve a meter. Asi funciona el solo mostrar)*/
-  //saca el tope de la estructura Â´AÂ´ y muestra
+  //saca el tope de la estructura ´A´ y muestra
   if(pila_vacia(a) == 1){
       sacar_pila(a, n);
       printf("\nEl tope es: %d\n", n);
