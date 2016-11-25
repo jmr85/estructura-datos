@@ -3,7 +3,7 @@
 #include "lect_lib.h" 
 #include "pila_lib.h"
 
-/* (todavia NO resuelto ) 18) Cargar dos pilas. Mostrar su contenido. 
+/* (X) 18) Cargar dos pilas. Mostrar su contenido. 
 Luego sin contar mostrar una leyenda aclaratoria dependiendo si 
 la cantidad de elementos de ambas pilas es igual o no. */
 
